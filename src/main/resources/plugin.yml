@@ -1,0 +1,5 @@
+name: Sense
+version: '${project.version}'
+main: fts.sense.Sense
+api-version: 1.18
+authors: [ BuilderInc ]

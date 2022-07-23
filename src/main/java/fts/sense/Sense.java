@@ -19,7 +19,6 @@ public final class Sense extends JavaPlugin {
 
     }
 
-    //TODO: Mending blocken
     public static Sense getPlugin() {
         return plugin;
     }

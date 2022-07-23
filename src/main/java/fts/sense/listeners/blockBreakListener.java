@@ -3,8 +3,10 @@ package fts.sense.listeners;
 import fts.sense.Sense;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,6 +18,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 
 public class blockBreakListener implements Listener {
@@ -42,17 +45,23 @@ public class blockBreakListener implements Listener {
                 if (enchDurabilityLevel == 0 || damageChance(enchDurabilityLevel)) {
                     damage.setDamage(damage.getDamage() + 1);
                     item.setItemMeta(itemMeta);
+
+                    if (damage.getDamage() > item.getType().getMaxDurability()) {
+                        player.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
+                        player.playSound(player.getLocation(), Sound.ENTITY_ITEM_BREAK, 1F, 1F);
+                    }
                 }
             }
             Material updatedMaterial = updateMaterial(event.getBlock().getType());
             for (int i = 0; i < 35; i++){
-                if (player.getInventory().getItem(i).getType() == updatedMaterial) {
-                    player.getInventory().getItem(i).setAmount(player.getInventory().getItem(i).getAmount() - 1);
-                    break;
+
+                if (player.getInventory().getItem(i) != null &&
+                    player.getInventory().getItem(i).getType() == updatedMaterial) {
+                        player.getInventory().getItem(i).setAmount(player.getInventory().getItem(i).getAmount() - 1);
+                        break;
                 }
             }
             placeBlock(event.getBlock(), event.getBlock().getType());
-
 
         }
     }

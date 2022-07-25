@@ -10,9 +10,12 @@ public class entchantingListener implements Listener {
     @EventHandler
     private void onAnvil(InventoryClickEvent event) {
         if (event.getInventory().getType() == InventoryType.ANVIL) {
-            if (event.getCurrentItem().getItemMeta().hasEnchant(Enchantment.MENDING) &&
+            if (event.getCurrentItem() != null &&
+                event.getCurrentItem().hasItemMeta() &&
+                event.getCurrentItem().getItemMeta().hasEnchant(Enchantment.MENDING) &&
+                event.getCurrentItem().getItemMeta().hasCustomModelData() &&
                 event.getCurrentItem().getItemMeta().getCustomModelData() == 999) {
-                event.setCancelled(true);
+                    event.setCancelled(true);
             }
         }
     }

@@ -10,7 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class Recipes {
     public void registerRecipies() {
-        ItemStack sense = new ItemStack(Material.IRON_HOE);
+        ItemStack sense = new ItemStack(Material.DIAMOND_HOE);
         ItemMeta senseMeta = sense.getItemMeta();
         senseMeta.setDisplayName("§aSense");
         senseMeta.setCustomModelData(999);

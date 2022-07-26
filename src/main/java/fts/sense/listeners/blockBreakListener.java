@@ -68,6 +68,10 @@ public class blockBreakListener implements Listener {
             block.setType(material);
         }, 3L);  //delay in ticks
     }
+    private int dropRate(int level) {
+
+        return 0;
+    }
     private boolean damageChance(int level) {
         int formula = (100 / level + 1);
 

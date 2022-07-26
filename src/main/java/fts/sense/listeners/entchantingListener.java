@@ -12,7 +12,8 @@ public class entchantingListener implements Listener {
         if (event.getInventory().getType() == InventoryType.ANVIL) {
             if (event.getCurrentItem() != null &&
                 event.getCurrentItem().hasItemMeta() &&
-                event.getCurrentItem().getItemMeta().hasEnchant(Enchantment.MENDING) &&
+                    (event.getCurrentItem().getItemMeta().hasEnchant(Enchantment.MENDING) ||
+                     event.getCurrentItem().getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) &&
                 event.getCurrentItem().getItemMeta().hasCustomModelData() &&
                 event.getCurrentItem().getItemMeta().getCustomModelData() == 999) {
                     event.setCancelled(true);
